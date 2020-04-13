@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="http://code.jquery.com/jquery-git2.js"></script>
+<meta charset=utf-8 />
+<title>JS Bin</title>
+</head>
+<body>
+  /open should lead to the list of bins —@yandle
+<!--boot js--><script id="jsbin-javascript" defer>console.log("Rock, Paper, Scissors Game!");
+
+const getUserChoice = userInput => {
+    //var userInput = document.getElementById('user_input').value;
+    var userInput = userInput.toLowerCase();
+    var computerChoice;
+    const rock = 0;
+    const paper = 1;
+    const scissors = 2;
+    const draw = 3;
+    let winner;
+    let gameStatus = 0;
+    let count = 0;
+    let choices = [];//user,computer
+    
+    //Get computer choice
+  	var generateChoice = Math.floor(Math.random() * 3);
+  	if ( generateChoice == 0 ) {
+    	computerChoice = 'rock';
+      return computerChoice;
+  	} else if ( generateChoice == 1 ) {
+    	computerChoice = 'paper';
+      return computerChoice;
+  	} else if ( generateChoice == 2 ) {
+    	computerChoice = 'scissors';
+      return computerChoice;
+  	}
+  		
+  
+    choices.push('userInput');
+    choices.push('computerChoice');
+    
+    console.log(`${userInput},${computerChoice}\r\n`);
+
+    //if userInput & computerChoice set begin
+    do {
+        if ( choices[0] !== null && choices[1] !== null ) {
+            gameStatus = 1; 
+            if ( choices[0] == rock && choices[1] == scissors ) {
+                gameStatus = 0;
+                winner = choices[0];
+                console.log(`${winner}\r\n`);
+                return winner;
+            } else if ( choices[0] == scissors && choices[1] == paper ) {
+                gameStatus = 0;
+                winner = choices[0];
+                console.log(`${winner}\r\n`);
+                return winner;
+            } else if ( choices[0] == paper && choices[1] == rock ) {
+                gameStatus = 0;
+                winner = choices[0];
+                console.log(`${winner}\r\n`);
+                return winner;
+            } else {
+                gameStatus = 0;
+                winner = draw;
+                console.log(`${winner}\r\n`);
+                return winner;
+            }//inner if
+        }//outer if
+        
+        count++;
+    }// do-while
+    while ( gameStatus !== 1 );
+}//getUserChoice
+
+console.log(getUserChoice('Paper'));
+console.log(getUserChoice('scissors'));
+console.log(getUserChoice('rocK'));
+</script>
+</body>
+</html>
