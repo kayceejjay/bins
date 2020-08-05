@@ -136,10 +136,11 @@ function nextSequence() {
   
   console.log(`The chosen color is ${randomChosenColor}.`);
   console.log(`This is the computer's sequence ${gamePattern}.`);
+  $(`#${randomChosenColor}`).fadeToggle(100).fadeToggle(100).fadeToggle(100).fadeToggle(100);
+  
   
 	$(`#${randomChosenColor}`).on("click",function() {
-  	$(`#${randomChosenColor}`).fadeToggle(100).fadeToggle(100).fadeToggle(100).fadeToggle(100);
-  	playSound(randomChosenColor);
+    playSound(randomChosenColor);
   });//eventAction
   
   return {
@@ -147,22 +148,23 @@ function nextSequence() {
     sequence: gamePattern
   };
   
-  episode++;
-  
-   if ( episode > 4 ) {
-    console.log('Restart game.');
-   } else { 
-     nextSequence();
-   	 console.log(episode);
-   }
-  
 } //nextSequence
 
 
-var game = nextSequence();
+function playSimon() {
+  var currGame;
+  
+  while ( episode < 5 ) { 
+    console.log(`This is episode ${episode}.`);
+    nextSequence();
+    episode++;
+  }//while
+  
+ // return currGame.sequence;
+  
+}//playSimon
 
-console.log(game.color);
-console.log(game.sequence);
+playSimon();
 
 </script>
 </body>
