@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Simon</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+<style id="jsbin-css">
+body {
+  text-align: center;
+  background-color: #011F3F;
+}
+
+#level-title {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 3rem;
+  margin:  5%;
+  color: #FEF2BF;
+}
+
+.container {
+  display: block;
+  width: 50%;
+  margin: auto;
+
+}
+
+.btn {
+  margin: 25px;
+  display: inline-block;
+  height: 200px;
+  width: 200px;
+  border: 10px solid black;
+  border-radius: 20%;
+}
+
+.game-over {
+  background-color: red;
+  opacity: 0.8;
+}
+
+.red {
+  background-color: red;
+}
+
+.green {
+  background-color: green;
+}
+
+.blue {
+  background-color: blue;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.pressed {
+  box-shadow: 0 0 20px white;
+  background-color: grey;
+}
+
+</style>
+</head>
+
+<body>
+  <h1 id="level-title">Press A Key to Start</h1>
+  <div class="container">
+    <div lass="row">
+
+      <div type="button" id="green" class="btn green">
+
+      </div>
+
+      <div type="button" id="red" class="btn red">
+
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div type="button" id="yellow" class="btn yellow">
+
+      </div>
+      <div type="button" id="blue" class="btn blue">
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!--<script src="https://assets.codepen.io/2736276/game.js"></script>-->
+  <!--<script src="game.js" charset="utf-8"></script>-->
+<!--boot js--><script id="jsbin-javascript" defer>//Global
+var gamePattern = [];
+var buttonColors = ["red", "blue", "green", "yellow"];
+
+function playSound(color) {
+  var sound;
+  var sounds = ["red.mp3", "blue.mp3", "green.mp3", "yellow.mp3", "wrong.mp3"];
+
+  switch (color) {
+    case "red":
+      sound = sounds[0];
+      break;
+    case "blue":
+      sound = sounds[1];
+      break;
+    case "green":
+      sound = sounds[2];
+      break;
+    case "yellow":
+      sound = sounds[3];
+      break;
+    default:
+      sound = sound[4];
+  } //switch
+
+  var soundToPlay = new Audio(sound);
+  return soundToPlay;
+} //playSound
+
+function nextSequence() {
+  var randomNumber = Math.floor(Math.random() * 3);
+  var randomChosenColor = buttonColors[randomNumber];
+  gamePattern.push(randomChosenColor);
+  
+  console.log(randomChosenColor);
+  console.log(gamePattern);
+  
+var item = $(`#${randomChosenColor}`);     								  		$(`#${randomChosenColor}`).on("click",function() {
+  $(`#${randomChosenColor}`).fadeToggle(100).fadeToggle(100).fadeToggle(100).fadeToggle(100);
+  }); //flash
+
+  $(`#${randomChosenColor}`).on("click", function () {
+    playSound(randomChosenColor);
+  }); //playSound
+  
+  return randomChosenColor;
+} //nextSequence
+
+nextSequence();
+
+</script>
+</body>
+
+</html>
