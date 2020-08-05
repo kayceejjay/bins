@@ -120,29 +120,39 @@ function playSound(color) {
   } //switch
 
   var soundToPlay = new Audio(sound);
-  return soundToPlay;
+  return soundToPlay.play();
 } //playSound
 
+
 function nextSequence() {
+  
   var randomNumber = Math.floor(Math.random() * 3);
   var randomChosenColor = buttonColors[randomNumber];
   gamePattern.push(randomChosenColor);
   
-  console.log(randomChosenColor);
-  console.log(gamePattern);
+  console.log(`The chosen color is ${randomChosenColor}.`);
+  console.log(`This is the computer's sequence ${gamePattern}.`);
   
 var item = $(`#${randomChosenColor}`);     								  		$(`#${randomChosenColor}`).on("click",function() {
   $(`#${randomChosenColor}`).fadeToggle(100).fadeToggle(100).fadeToggle(100).fadeToggle(100);
   }); //flash
 
-  $(`#${randomChosenColor}`).on("click", function () {
+  $(`#${randomChosenColor}`).on("click", function() {
     playSound(randomChosenColor);
   }); //playSound
   
-  return randomChosenColor;
+  return {
+    color: randomChosenColor,
+    sequence: gamePattern
+  };
+  
 } //nextSequence
 
-nextSequence();
+
+var game = nextSequence();
+
+console.log(game.color);
+console.log(game.sequence);
 
 </script>
 </body>
