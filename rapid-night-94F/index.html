@@ -122,7 +122,7 @@ function playSound(color) {
     default:
       sound = sound[4];
   } //switch
-
+	console.log(`The soundto play is ${sound}.`);
   var soundToPlay = new Audio(sound);
   return soundToPlay.play();
 } //playSound
