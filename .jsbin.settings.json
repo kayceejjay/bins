@@ -3,5 +3,6 @@
     // "app.theme": "dark"
     "app.splitColumns": true,
     "editor.lineWrapping": true,
-    "editor.lineNumbers": true
+    "editor.lineNumbers": true,
+      "app.defaultSave": "github"
 }
